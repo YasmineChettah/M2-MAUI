@@ -4,31 +4,45 @@ public class MorpionGame
 {
     public static void Main()
     {
-        Morpion jeu = new Morpion();
-        char joueurActuel = 'X';
+        Morpion game = new Morpion();
+        char actualPlayer = 'X';
 
         while (true)
         {
-            jeu.Display();
-            Console.WriteLine($"Tour du joueur {joueurActuel}");
+            game.Display();
+            Console.WriteLine($"Player {actualPlayer} turn");
 
-            Console.Write("Entrez la ligne (0-2) : ");
+            Console.Write("Enter line (0-2) : ");
             int x = int.Parse(Console.ReadLine());
 
-            Console.Write("Entrez la colonne (0-2) : ");
+            Console.Write("Enter column (0-2) : ");
             int y = int.Parse(Console.ReadLine());
 
-            bool coupValide = jeu.Play(x, y, joueurActuel);
+            bool coupValide = game.Play(x, y, actualPlayer);
 
             if (!coupValide)
             {
-                Console.WriteLine("Case déjà prise ! Appuie sur Enter.");
+                Console.WriteLine("Case not available ! Click on Enter.");
                 Console.ReadLine();
                 continue; // redo
             }
 
-            // Alternate gamer
-            joueurActuel = (joueurActuel == 'X') ? 'O' : 'X';
+            if (game.CheckWin(actualPlayer))
+            {
+                game.Display();
+                Console.WriteLine($"Player {actualPlayer} won !");
+                break;
+            }
+
+            if (game.IsFull())
+            {
+                game.Display();
+                Console.WriteLine("Equals !");
+                break;
+            }
+
+            // Alternate player
+            actualPlayer = (actualPlayer == 'X') ? 'O' : 'X';
         }
     }
 }
