@@ -30,14 +30,14 @@ public class Board
         }
     }
 
-    public bool PlayMove(int x, int y, char symbole)
+    public bool PlayMove(int row, int column, char symbole)
     {
-        if(x < 0 || y < 0 || x > 2 || y > 2) return false;
+        if(row < 0 || column < 0 || row > 2 || column > 2) return false;
 
         // Check if case is empty
-        if (display[x, y] == ' ')
+        if (display[row, column] == ' ')
         {
-            display[x, y] = symbole;
+            display[row, column] = symbole;
             return true;
         }
         return false;
@@ -61,6 +61,9 @@ public class Board
 
         // Diagonal win
         if (display[0, 0] == symbole && display[1, 1] == symbole && display[2, 2] == symbole)
+            return true;
+
+        if (display[0, 2] == symbole && display[1, 1] == symbole && display[2, 0] == symbole)
             return true;
 
         return false; // no win
