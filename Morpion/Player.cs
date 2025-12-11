@@ -9,7 +9,7 @@ public class Player
         Symbol = symbol;
     }
 
-    public int[] GetNextMove()
+    public virtual int[] GetNextMove()
     {
         Console.Write("Enter row (0-2): ");
         int x = int.Parse(Console.ReadLine());
