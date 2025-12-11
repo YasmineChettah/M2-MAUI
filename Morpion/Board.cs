@@ -1,13 +1,12 @@
 ﻿using System;
 
-public class Morpion
+public class Board
 {
-    // Create a matrice 3x3 to intilize board
     private char[,] display = new char[3, 3];
 
-    public Morpion()
+    public Board()
     {
-        // Initialize board with empty cases
+        // Initialize board with empty spaces
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 display[i, j] = ' ';
@@ -31,17 +30,18 @@ public class Morpion
         }
     }
 
-    public bool Play(int x, int y, char symbole)
+    public bool PlayMove(int row, int column, char symbole)
     {
+        if(row < 0 || column < 0 || row > 2 || column > 2) return false;
+
         // Check if case is empty
-        if (display[x, y] == ' ')
+        if (display[row, column] == ' ')
         {
-            display[x, y] = symbole;
+            display[row, column] = symbole;
             return true;
         }
         return false;
     }
-
 
     public bool CheckWin(char symbole)
     {
@@ -63,6 +63,9 @@ public class Morpion
         if (display[0, 0] == symbole && display[1, 1] == symbole && display[2, 2] == symbole)
             return true;
 
+        if (display[0, 2] == symbole && display[1, 1] == symbole && display[2, 0] == symbole)
+            return true;
+
         return false; // no win
     }
 
@@ -75,5 +78,8 @@ public class Morpion
 
         return true; // no empty case => equals
     }
-
 }
+
+
+
+
