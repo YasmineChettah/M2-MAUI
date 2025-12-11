@@ -10,8 +10,27 @@ public class Game
     public Game()
     {
         board = new Board();
-        playerX = new Player('X');
-        playerO = new Player('O');
+
+        Console.WriteLine("Choose mode:");
+        Console.WriteLine("1 - Human vs Human");
+        Console.WriteLine("2 - Human vs AI");
+        Console.Write("Your choice: ");
+
+        string choice = Console.ReadLine();
+
+        if (choice == "2")
+        {
+            playerX = new Player('X');
+            playerO = new AIPlayer('O');
+            Console.WriteLine("You play against the AI!");
+        }
+        else
+        {
+            playerX = new Player('X');
+            playerO = new Player('O');
+            Console.WriteLine("Human vs Human mode!");
+        }
+
         currentPlayer = playerX;
     }
 
@@ -28,10 +47,10 @@ public class Game
             Console.WriteLine($"Player {currentPlayer.Symbol}'s turn");
 
             int[] move = currentPlayer.GetNextMove();
-            int x = move[0];
-            int y = move[1];
+            int row = move[0];
+            int column = move[1];
 
-            bool success = board.PlayMove(x, y, currentPlayer.Symbol);
+            bool success = board.PlayMove(row, column, currentPlayer.Symbol);
 
             if (!success)
             {
