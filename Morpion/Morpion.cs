@@ -3,14 +3,14 @@
 public class Morpion
 {
     // Create a matrice 3x3 to intilize board
-    private char[,] plateau = new char[3, 3];
+    private char[,] display = new char[3, 3];
 
     public Morpion()
     {
         // Initialize board with empty cases
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                plateau[i, j] = ' ';
+                display[i, j] = ' ';
     }
 
     public void Display()
@@ -23,7 +23,7 @@ public class Morpion
             Console.Write(i + "| ");
             for (int j = 0; j < 3; j++)
             {
-                Console.Write(plateau[i, j]);
+                Console.Write(display[i, j]);
                 if (j <= 2) Console.Write(" | ");
             }
             Console.WriteLine();
@@ -34,11 +34,46 @@ public class Morpion
     public bool Play(int x, int y, char symbole)
     {
         // Check if case is empty
-        if (plateau[x, y] == ' ')
+        if (display[x, y] == ' ')
         {
-            plateau[x, y] = symbole;
+            display[x, y] = symbole;
             return true;
         }
         return false;
     }
+
+
+    public bool CheckWin(char symbole)
+    {
+        // Lines win
+        for (int i = 0; i < 3; i++)
+        {
+            if (display[i, 0] == symbole && display[i, 1] == symbole && display[i, 2] == symbole)
+                return true;
+        }
+
+        // Columns win
+        for (int j = 0; j < 3; j++)
+        {
+            if (display[0, j] == symbole && display[1, j] == symbole && display[2, j] == symbole)
+                return true;
+        }
+
+        // Diagonal win
+        if (display[0, 0] == symbole && display[1, 1] == symbole && display[2, 2] == symbole)
+            return true;
+
+        return false; // no win
+    }
+
+    public bool IsFull()
+    {
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                if (display[i, j] == ' ')
+                    return false;
+
+        return true; // no empty case => equals
+    }
+
 }
