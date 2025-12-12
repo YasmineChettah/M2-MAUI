@@ -1,19 +1,22 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 public class AIPlayer : IPlayer
 {
-    private Random playCase = new Random();
-    public char Symbol { get; private set; }
+    public char Symbol { get; }
+    private Random range = new Random();
 
     public AIPlayer(char symbol)
     {
         Symbol = symbol;
     }
 
-    public int[] GetNextMove()
+    public async Task<int[]> GetNextMove()
     {
-        int x = playCase.Next(0, 3);
-        int y = playCase.Next(0, 3);
+        await Task.Delay(1000);
+
+        int x = range.Next(0, 3);
+        int y = range.Next(0, 3);
 
         return new int[] { x, y };
     }

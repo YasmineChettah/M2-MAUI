@@ -1,5 +1,5 @@
 ﻿public interface IPlayer
 {
     char Symbol { get; }
-    int[] GetNextMove();
+    Task<int[]> GetNextMove();
 }

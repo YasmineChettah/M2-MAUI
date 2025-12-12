@@ -2,9 +2,9 @@
 
 public class MorpionGame
 {
-    public static void Main()
+    public static async Task Main()
     {
         Game game = new Game();
-        game.Play();
+        await game.Play();
     }
 }

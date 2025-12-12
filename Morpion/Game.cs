@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading.Tasks;
 public class Game
 {
     private Board board;
@@ -39,14 +39,14 @@ public class Game
         currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
     }
 
-    public void Play()
+    public async Task Play()
     {
         while (true)
         {
             board.Display();
             Console.WriteLine($"Player {currentPlayer.Symbol}'s turn");
 
-            int[] move = currentPlayer.GetNextMove();
+            int[] move = await currentPlayer.GetNextMove();
             int row = move[0];
             int column = move[1];
 
