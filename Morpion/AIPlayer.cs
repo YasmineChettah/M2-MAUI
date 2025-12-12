@@ -1,14 +1,16 @@
 ﻿using System;
 
-public class AIPlayer : Player
+public class AIPlayer : IPlayer
 {
     private Random playCase = new Random();
+    public char Symbol { get; private set; }
 
-    public AIPlayer(char symbol) : base(symbol)
+    public AIPlayer(char symbol)
     {
+        Symbol = symbol;
     }
 
-    public override int[] GetNextMove()
+    public int[] GetNextMove()
     {
         int x = playCase.Next(0, 3);
         int y = playCase.Next(0, 3);

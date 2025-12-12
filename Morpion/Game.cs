@@ -3,9 +3,9 @@
 public class Game
 {
     private Board board;
-    private Player playerX;
-    private Player playerO;
-    private Player currentPlayer;
+    private IPlayer playerX;
+    private IPlayer playerO;
+    private IPlayer currentPlayer;
 
     public Game()
     {
@@ -76,5 +76,21 @@ public class Game
             SwitchPlayer();
         }
     }
+
+    //Tests
+    public Game(Board board, IPlayer playerX, IPlayer playerO)
+    {
+        this.board = board;
+        this.playerX = playerX;
+        this.playerO = playerO;
+        this.currentPlayer = playerX;
+    }
+    public IPlayer CurrentPlayer => currentPlayer;
+    public Board Board => board;
+    public void SwitchPlayerForTest()
+    {
+        currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
+    }
+
 }
 

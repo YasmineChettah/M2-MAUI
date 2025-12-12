@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Morpion/Morpion.csproj" />
+  <Project Path="TestTikTakToe/TestTikTakToe.csproj" Id="0cfc079f-a321-4df5-9814-818496b3c69c" />
 </Solution>

@@ -1,15 +1,15 @@
 ﻿using System;
 
-public class Player
+public class Player : IPlayer
 {
-    public char Symbol;
+    public char Symbol { get; private set; }
 
     public Player(char symbol)
     {
         Symbol = symbol;
     }
 
-    public virtual int[] GetNextMove()
+    public int[] GetNextMove()
     {
         Console.Write("Enter row (0-2): ");
         int x = int.Parse(Console.ReadLine());
